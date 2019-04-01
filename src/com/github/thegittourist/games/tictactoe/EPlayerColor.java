@@ -1,4 +1,4 @@
-package ttt;
+package com.github.thegittourist.games.tictactoe;
 
 public enum EPlayerColor {
 	RED, BLUE;

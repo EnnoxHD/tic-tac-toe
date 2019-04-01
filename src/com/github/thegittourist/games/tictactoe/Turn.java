@@ -1,4 +1,4 @@
-package ttt;
+package com.github.thegittourist.games.tictactoe;
 
 public class Turn {
 	private EPlayerColor playerColor = null;

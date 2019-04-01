@@ -1,4 +1,4 @@
-package ttt;
+package com.github.thegittourist.games.tictactoe;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class Print {
 	
 	public static boolean preGame() {
 		System.out.print("--- Willkommen bei TicTacToe ---\n"
-				+ "Möchten Sie für die Spieler Namen vergeben (ja / nein)? ");
+				+ "MÃ¶chten Sie fÃ¼r die Spieler Namen vergeben (ja / nein)? ");
 		String a = "";
 		int i = 0;
 		do {
@@ -80,7 +80,7 @@ public class Print {
 		} else {
 			wStr = winner.getPlayerColorString();
 		}
-		System.out.println("\nThe WINNER of the Game is " + wStr);
+		System.out.println("\nDer Gewinner des Spiels ist " + wStr);
 		System.out.println("--- --- --- --- ---");
 	}
 }

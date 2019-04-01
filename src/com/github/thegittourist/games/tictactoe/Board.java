@@ -1,4 +1,4 @@
-package ttt;
+package com.github.thegittourist.games.tictactoe;
 
 public class Board implements Cloneable {
 
@@ -70,14 +70,14 @@ public class Board implements Cloneable {
 				hasWonColumn[i] = EPlayerColor.BLUE;
 			}
 		}
-		//X für \
+		//X fï¿½r \
 		if(getRow(0)[0] == EPlayerColor.RED && getRow(1)[1] == EPlayerColor.RED && getRow(2)[2] == EPlayerColor.RED) {
 			hasWonX[0] = EPlayerColor.RED;
 		}
 		if(getRow(0)[0] == EPlayerColor.BLUE && getRow(1)[1] == EPlayerColor.BLUE && getRow(2)[2] == EPlayerColor.BLUE) {
 			hasWonX[0] = EPlayerColor.BLUE;
 		}
-		//X für /
+		//X fï¿½r /
 		if(getRow(0)[2] == EPlayerColor.RED && getRow(1)[1] == EPlayerColor.RED && getRow(2)[0] == EPlayerColor.RED) {
 			hasWonX[0] = EPlayerColor.RED;
 		}

@@ -1,4 +1,4 @@
-package ttt;
+package com.github.thegittourist.games.tictactoe;
 
 public class Game {
 
@@ -99,14 +99,14 @@ public class Game {
 					hasWonColumn[i] = EPlayerColor.BLUE;
 				}
 			}
-			//X für \
+			//X fï¿½r \
 			if(board.getRow(0)[0] == EPlayerColor.RED && board.getRow(1)[1] == EPlayerColor.RED && board.getRow(2)[2] == EPlayerColor.RED) {
 				hasWonX[0] = EPlayerColor.RED;
 			}
 			if(board.getRow(0)[0] == EPlayerColor.BLUE && board.getRow(1)[1] == EPlayerColor.BLUE && board.getRow(2)[2] == EPlayerColor.BLUE) {
 				hasWonX[0] = EPlayerColor.BLUE;
 			}
-			//X für /
+			//X fï¿½r /
 			if(board.getRow(0)[2] == EPlayerColor.RED && board.getRow(1)[1] == EPlayerColor.RED && board.getRow(2)[0] == EPlayerColor.RED) {
 				hasWonX[0] = EPlayerColor.RED;
 			}
