@@ -40,9 +40,9 @@ public class Print {
 		for(int i = 0; i < 3; i++) {
 			System.out.print("|");
 			for(int k = 0; k < 3; k++) {
-				if(board.getRow(i)[k] == EPlayerColor.RED) {
+				if(board.getRow(i)[k] == EPlayerSign.X) {
 					out = "X";
-				} else if(board.getRow(i)[k] == EPlayerColor.BLUE) {
+				} else if(board.getRow(i)[k] == EPlayerSign.O) {
 					out = "O";
 				} else if(board.getRow(i)[k] == null) {
 					out = " ";

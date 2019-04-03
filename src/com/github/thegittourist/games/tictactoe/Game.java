@@ -10,31 +10,31 @@ public class Game {
 		board = new Board();
 		currentPlayerIndex = 0;
 		players = new Player[2];
-		players[0] = new Player(EPlayerColor.RED);
-		players[1] = new Player(EPlayerColor.BLUE);
+		players[0] = new Player(EPlayerSign.X);
+		players[1] = new Player(EPlayerSign.O);
 	}
 	
 	public Game(String namePlayerRed, String namePlayerBlue) {
 		board = new Board();
 		currentPlayerIndex = 0;
 		players = new Player[2];
-		players[0] = new Player(EPlayerColor.RED, namePlayerRed);
-		players[1] = new Player(EPlayerColor.BLUE, namePlayerBlue);
+		players[0] = new Player(EPlayerSign.X, namePlayerRed);
+		players[1] = new Player(EPlayerSign.O, namePlayerBlue);
 	}
 	
-	public EPlayerColor getCurrentPlayerColor() {
+	public EPlayerSign getCurrentPlayerColor() {
 		return players[currentPlayerIndex].getPlayerColor();
 	}
 	
-	private Player getPlayerByColor(EPlayerColor color) throws IllegalArgumentException {
+	private Player getPlayerByColor(EPlayerSign color) throws IllegalArgumentException {
 		switch(color) {
-		case RED:
+		case X:
 			try {
 				return (Player) players[0].clone();
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();
 			}
-		case BLUE:
+		case O:
 			try {
 				return (Player) players[1].clone();
 			} catch (CloneNotSupportedException e) {
@@ -82,53 +82,53 @@ public class Game {
 	public Player getWinner() {
 		Player player = null;
 		if(board.hasWon()) {
-			EPlayerColor[] hasWonRow = new EPlayerColor[3], hasWonColumn = new EPlayerColor[3], hasWonX = new EPlayerColor[2];
+			EPlayerSign[] hasWonRow = new EPlayerSign[3], hasWonColumn = new EPlayerSign[3], hasWonX = new EPlayerSign[2];
 			for(int i = 0; i < 3; i++) {
 				//Rows
-				if(board.getRow(i)[0] == EPlayerColor.RED && board.getRow(i)[1] == EPlayerColor.RED && board.getRow(i)[2] == EPlayerColor.RED) {
-					hasWonRow[i] = EPlayerColor.RED;
+				if(board.getRow(i)[0] == EPlayerSign.X && board.getRow(i)[1] == EPlayerSign.X && board.getRow(i)[2] == EPlayerSign.X) {
+					hasWonRow[i] = EPlayerSign.X;
 				}
-				if(board.getRow(i)[0] == EPlayerColor.BLUE && board.getRow(i)[1] == EPlayerColor.BLUE && board.getRow(i)[2] == EPlayerColor.BLUE) {
-					hasWonRow[i] = EPlayerColor.BLUE;
+				if(board.getRow(i)[0] == EPlayerSign.O && board.getRow(i)[1] == EPlayerSign.O && board.getRow(i)[2] == EPlayerSign.O) {
+					hasWonRow[i] = EPlayerSign.O;
 				}
 				//Columns
-				if(board.getColumn(i)[0] == EPlayerColor.RED && board.getColumn(i)[1] == EPlayerColor.RED && board.getColumn(i)[2] == EPlayerColor.RED) {
-					hasWonColumn[i] = EPlayerColor.RED;
+				if(board.getColumn(i)[0] == EPlayerSign.X && board.getColumn(i)[1] == EPlayerSign.X && board.getColumn(i)[2] == EPlayerSign.X) {
+					hasWonColumn[i] = EPlayerSign.X;
 				}
-				if(board.getColumn(i)[0] == EPlayerColor.BLUE && board.getColumn(i)[1] == EPlayerColor.BLUE && board.getColumn(i)[2] == EPlayerColor.BLUE) {
-					hasWonColumn[i] = EPlayerColor.BLUE;
+				if(board.getColumn(i)[0] == EPlayerSign.O && board.getColumn(i)[1] == EPlayerSign.O && board.getColumn(i)[2] == EPlayerSign.O) {
+					hasWonColumn[i] = EPlayerSign.O;
 				}
 			}
-			//X f�r \
-			if(board.getRow(0)[0] == EPlayerColor.RED && board.getRow(1)[1] == EPlayerColor.RED && board.getRow(2)[2] == EPlayerColor.RED) {
-				hasWonX[0] = EPlayerColor.RED;
+			//X fuer \
+			if(board.getRow(0)[0] == EPlayerSign.X && board.getRow(1)[1] == EPlayerSign.X && board.getRow(2)[2] == EPlayerSign.X) {
+				hasWonX[0] = EPlayerSign.X;
 			}
-			if(board.getRow(0)[0] == EPlayerColor.BLUE && board.getRow(1)[1] == EPlayerColor.BLUE && board.getRow(2)[2] == EPlayerColor.BLUE) {
-				hasWonX[0] = EPlayerColor.BLUE;
+			if(board.getRow(0)[0] == EPlayerSign.O && board.getRow(1)[1] == EPlayerSign.O && board.getRow(2)[2] == EPlayerSign.O) {
+				hasWonX[0] = EPlayerSign.O;
 			}
-			//X f�r /
-			if(board.getRow(0)[2] == EPlayerColor.RED && board.getRow(1)[1] == EPlayerColor.RED && board.getRow(2)[0] == EPlayerColor.RED) {
-				hasWonX[0] = EPlayerColor.RED;
+			//X fuer /
+			if(board.getRow(0)[2] == EPlayerSign.X && board.getRow(1)[1] == EPlayerSign.X && board.getRow(2)[0] == EPlayerSign.X) {
+				hasWonX[0] = EPlayerSign.X;
 			}
-			if(board.getRow(0)[2] == EPlayerColor.BLUE && board.getRow(1)[1] == EPlayerColor.BLUE && board.getRow(2)[0] == EPlayerColor.BLUE) {
-				hasWonX[0] = EPlayerColor.BLUE;
+			if(board.getRow(0)[2] == EPlayerSign.O && board.getRow(1)[1] == EPlayerSign.O && board.getRow(2)[0] == EPlayerSign.O) {
+				hasWonX[0] = EPlayerSign.O;
 			}
 			
 			//Abfragen
-			EPlayerColor color = null;
+			EPlayerSign color = null;
 			for(int i = 0; i < 3; i++) {
-				if(hasWonRow[i] == EPlayerColor.RED || hasWonColumn[i] == EPlayerColor.RED) {
-					color = EPlayerColor.RED;
+				if(hasWonRow[i] == EPlayerSign.X || hasWonColumn[i] == EPlayerSign.X) {
+					color = EPlayerSign.X;
 				}
-				if(hasWonRow[i] == EPlayerColor.BLUE || hasWonColumn[i] == EPlayerColor.BLUE) {
-					color = EPlayerColor.BLUE;
+				if(hasWonRow[i] == EPlayerSign.O || hasWonColumn[i] == EPlayerSign.O) {
+					color = EPlayerSign.O;
 				}
 				if(i < 2) {
-					if(hasWonX[i] == EPlayerColor.RED) {
-						color = EPlayerColor.RED;
+					if(hasWonX[i] == EPlayerSign.X) {
+						color = EPlayerSign.X;
 					}
-					if(hasWonX[i] == EPlayerColor.BLUE) {
-						color = EPlayerColor.BLUE;
+					if(hasWonX[i] == EPlayerSign.O) {
+						color = EPlayerSign.O;
 					}
 				}
 			}

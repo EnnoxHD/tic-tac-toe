@@ -3,13 +3,13 @@ package com.github.thegittourist.games.tictactoe;
 public class Board implements Cloneable {
 
 	// fields[row][column]
-	private EPlayerColor[][] fields = new EPlayerColor[3][3];
+	private EPlayerSign[][] fields = new EPlayerSign[3][3];
 	
 	public Board() {
 		initBoard();
 	}
 	
-	public Board(EPlayerColor[][] fields) throws IllegalArgumentException {
+	public Board(EPlayerSign[][] fields) throws IllegalArgumentException {
 		if(fields.length == 3 && fields[0].length == 3 && fields[1].length == 3 && fields[2].length == 3) {
 			this.fields = fields.clone();
 		} else {
@@ -25,12 +25,12 @@ public class Board implements Cloneable {
 		}
 	}
 	
-	public EPlayerColor[] getRow(int rowNumber) {
+	public EPlayerSign[] getRow(int rowNumber) {
 		return fields[rowNumber];
 	}
 	
-	public EPlayerColor[] getColumn(int columnNumber) {
-		EPlayerColor[] column = {getRow(0)[columnNumber], getRow(1)[columnNumber], getRow(2)[columnNumber]};
+	public EPlayerSign[] getColumn(int columnNumber) {
+		EPlayerSign[] column = {getRow(0)[columnNumber], getRow(1)[columnNumber], getRow(2)[columnNumber]};
 		return column;
 	}
 	
@@ -53,47 +53,47 @@ public class Board implements Cloneable {
 	
 	public boolean hasWon() {
 		boolean hasWon = false;
-		EPlayerColor[] hasWonRow = new EPlayerColor[3], hasWonColumn = new EPlayerColor[3], hasWonX = new EPlayerColor[2];
+		EPlayerSign[] hasWonRow = new EPlayerSign[3], hasWonColumn = new EPlayerSign[3], hasWonX = new EPlayerSign[2];
 		for(int i = 0; i < 3; i++) {
 			//Rows
-			if(getRow(i)[0] == EPlayerColor.RED && getRow(i)[1] == EPlayerColor.RED && getRow(i)[2] == EPlayerColor.RED) {
-				hasWonRow[i] = EPlayerColor.RED;
+			if(getRow(i)[0] == EPlayerSign.X && getRow(i)[1] == EPlayerSign.X && getRow(i)[2] == EPlayerSign.X) {
+				hasWonRow[i] = EPlayerSign.X;
 			}
-			if(getRow(i)[0] == EPlayerColor.BLUE && getRow(i)[1] == EPlayerColor.BLUE && getRow(i)[2] == EPlayerColor.BLUE) {
-				hasWonRow[i] = EPlayerColor.BLUE;
+			if(getRow(i)[0] == EPlayerSign.O && getRow(i)[1] == EPlayerSign.O && getRow(i)[2] == EPlayerSign.O) {
+				hasWonRow[i] = EPlayerSign.O;
 			}
 			//Columns
-			if(getColumn(i)[0] == EPlayerColor.RED && getColumn(i)[1] == EPlayerColor.RED && getColumn(i)[2] == EPlayerColor.RED) {
-				hasWonColumn[i] = EPlayerColor.RED;
+			if(getColumn(i)[0] == EPlayerSign.X && getColumn(i)[1] == EPlayerSign.X && getColumn(i)[2] == EPlayerSign.X) {
+				hasWonColumn[i] = EPlayerSign.X;
 			}
-			if(getColumn(i)[0] == EPlayerColor.BLUE && getColumn(i)[1] == EPlayerColor.BLUE && getColumn(i)[2] == EPlayerColor.BLUE) {
-				hasWonColumn[i] = EPlayerColor.BLUE;
+			if(getColumn(i)[0] == EPlayerSign.O && getColumn(i)[1] == EPlayerSign.O && getColumn(i)[2] == EPlayerSign.O) {
+				hasWonColumn[i] = EPlayerSign.O;
 			}
 		}
-		//X f�r \
-		if(getRow(0)[0] == EPlayerColor.RED && getRow(1)[1] == EPlayerColor.RED && getRow(2)[2] == EPlayerColor.RED) {
-			hasWonX[0] = EPlayerColor.RED;
+		//X fuer \
+		if(getRow(0)[0] == EPlayerSign.X && getRow(1)[1] == EPlayerSign.X && getRow(2)[2] == EPlayerSign.X) {
+			hasWonX[0] = EPlayerSign.X;
 		}
-		if(getRow(0)[0] == EPlayerColor.BLUE && getRow(1)[1] == EPlayerColor.BLUE && getRow(2)[2] == EPlayerColor.BLUE) {
-			hasWonX[0] = EPlayerColor.BLUE;
+		if(getRow(0)[0] == EPlayerSign.O && getRow(1)[1] == EPlayerSign.O && getRow(2)[2] == EPlayerSign.O) {
+			hasWonX[0] = EPlayerSign.O;
 		}
-		//X f�r /
-		if(getRow(0)[2] == EPlayerColor.RED && getRow(1)[1] == EPlayerColor.RED && getRow(2)[0] == EPlayerColor.RED) {
-			hasWonX[0] = EPlayerColor.RED;
+		//X fuer /
+		if(getRow(0)[2] == EPlayerSign.X && getRow(1)[1] == EPlayerSign.X && getRow(2)[0] == EPlayerSign.X) {
+			hasWonX[0] = EPlayerSign.X;
 		}
-		if(getRow(0)[2] == EPlayerColor.BLUE && getRow(1)[1] == EPlayerColor.BLUE && getRow(2)[0] == EPlayerColor.BLUE) {
-			hasWonX[0] = EPlayerColor.BLUE;
+		if(getRow(0)[2] == EPlayerSign.O && getRow(1)[1] == EPlayerSign.O && getRow(2)[0] == EPlayerSign.O) {
+			hasWonX[0] = EPlayerSign.O;
 		}
 		
 		//Abfragen
 		for(int i = 0; i < 3; i++) {
-			if(hasWonRow[i] == EPlayerColor.RED || hasWonColumn[i] == EPlayerColor.RED) {
+			if(hasWonRow[i] == EPlayerSign.X || hasWonColumn[i] == EPlayerSign.X) {
 				hasWon = true;
 			}
-			if(hasWonRow[i] == EPlayerColor.BLUE || hasWonColumn[i] == EPlayerColor.BLUE) {
+			if(hasWonRow[i] == EPlayerSign.O || hasWonColumn[i] == EPlayerSign.O) {
 				hasWon = true;
 			}
-			if(i < 2 && (hasWonX[i] == EPlayerColor.RED || hasWonX[i] == EPlayerColor.BLUE)) {
+			if(i < 2 && (hasWonX[i] == EPlayerSign.X || hasWonX[i] == EPlayerSign.O)) {
 				hasWon = true;
 			}
 		}
