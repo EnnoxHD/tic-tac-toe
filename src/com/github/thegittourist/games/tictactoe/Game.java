@@ -23,7 +23,7 @@ public class Game {
 	}
 	
 	public EPlayerSign getCurrentPlayerColor() {
-		return players[currentPlayerIndex].getPlayerColor();
+		return players[currentPlayerIndex].getSign();
 	}
 	
 	private Player getPlayerByColor(EPlayerSign color) throws IllegalArgumentException {
@@ -50,7 +50,7 @@ public class Game {
 	}
 		
 	public void nextTurn(Turn turn) {
-		if(turn.getPlayerColor().equals(players[currentPlayerIndex].getPlayerColor()) && board.nextTurnValid(turn)) {
+		if(turn.getSign().equals(players[currentPlayerIndex].getSign()) && board.nextTurnValid(turn)) {
 			board.nextTurn(turn);
 			switchPlayers();
 		}

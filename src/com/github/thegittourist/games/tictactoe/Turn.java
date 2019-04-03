@@ -10,7 +10,7 @@ public class Turn {
 		this.fieldY = fieldY;
 	}
 	
-	public EPlayerSign getPlayerColor() {
+	public EPlayerSign getSign() {
 		return playerColor;
 	}
 		

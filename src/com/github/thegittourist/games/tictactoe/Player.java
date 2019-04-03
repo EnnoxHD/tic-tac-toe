@@ -2,29 +2,28 @@ package com.github.thegittourist.games.tictactoe;
 
 public class Player implements Cloneable {
 
-	private EPlayerSign playerColor = null;
-	private String playerName = null;
+	private EPlayerSign sign = null;
+	private String name = null;
 	
-	public Player(EPlayerSign playerColor) {
-		this.playerColor = playerColor;
-		this.playerName = "";
+	public Player(EPlayerSign sign) {
+		this(sign, "");
 	}
 	
-	public Player(EPlayerSign playerColor, String playerName) {
-		this.playerColor = playerColor;
-		this.playerName = playerName;
+	public Player(EPlayerSign sign, String name) {
+		this.sign = sign;
+		this.name = name;
 	}
 	
-	public EPlayerSign getPlayerColor() {
-		return playerColor;
+	public EPlayerSign getSign() {
+		return sign;
 	}
 	
-	public String getPlayerColorString() {
-		return playerColor.toString();
+	public String getPlayerSignString() {
+		return sign.toString();
 	}
 	
 	public String getPlayerName() {
-		return playerName;
+		return name;
 	}
 	
 	@Override

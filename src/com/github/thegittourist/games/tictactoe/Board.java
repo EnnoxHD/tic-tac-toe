@@ -42,7 +42,7 @@ public class Board implements Cloneable {
 	
 	public void nextTurn(Turn turn) {
 		if(nextTurnValid(turn)) {
-			fields[turn.getY()][turn.getX()] = turn.getPlayerColor();
+			fields[turn.getY()][turn.getX()] = turn.getSign();
 		}
 	}
 	
