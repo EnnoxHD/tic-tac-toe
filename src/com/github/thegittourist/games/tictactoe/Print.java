@@ -63,7 +63,7 @@ public class Print {
 			if(!currentPlayer.getPlayerName().equals("")) {
 				System.out.println("Zug von " + currentPlayer.getPlayerName() + ": ");
 			} else {
-				System.out.println("Zug von " + currentPlayer.getPlayerSignString() + ": ");
+				System.out.println("Zug von " + currentPlayer.getSignString() + ": ");
 			}
 			System.out.print("X - ");
 			turnCoords[0] = input.nextInt();
@@ -78,7 +78,7 @@ public class Print {
 		if(!winner.getPlayerName().equals("")) {
 			wStr = winner.getPlayerName();
 		} else {
-			wStr = winner.getPlayerSignString();
+			wStr = winner.getSignString();
 		}
 		System.out.println("\nDer Gewinner des Spiels ist " + wStr);
 		System.out.println("--- --- --- --- ---");

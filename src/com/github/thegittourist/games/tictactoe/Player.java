@@ -18,7 +18,7 @@ public class Player implements Cloneable {
 		return sign;
 	}
 	
-	public String getPlayerSignString() {
+	public String getSignString() {
 		return sign.toString();
 	}
 	
