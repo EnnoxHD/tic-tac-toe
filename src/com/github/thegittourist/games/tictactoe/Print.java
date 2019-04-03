@@ -7,23 +7,44 @@ public class Print {
 	public static final Scanner input = new Scanner(System.in);
 	
 	public static boolean preGame() {
+		final Object[] yesNoVals = (Object[]) EYesNo.values();
 		System.out.print("--- Willkommen bei TicTacToe ---\n"
-				+ "Möchten Sie für die Spieler Namen vergeben (ja / nein)? ");
+				+ "Möchten Sie für die Spieler Namen vergeben (" + concatOptions(yesNoVals) + ")? ");
 		String a = "";
 		int i = 0;
 		do {
 			if(i != 0) {
-				System.out.print("Falsche Eingabe, bitte 'ja' oder 'nein' eingeben: ");
+				System.out.print("Falsche Eingabe, bitte " + concatOptionsOr(yesNoVals) + " eingeben: ");
 			}
 			a = input.nextLine();
 			i++;
-		} while((!a.equals("ja")) && (!a.equals("nein")));
-		if(a.equals("ja")) {
+		} while((!a.equals(EYesNo.JA.toString())) && (!a.equals(EYesNo.NEIN.toString())));
+		if(a.equals(EYesNo.JA.toString())) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
+	public static String concatOptions(Object... objects) {
+		String options = "";
+		for(int i = 0; i < objects.length; i++) {
+			options += objects[i].toString();
+			if(i < objects.length-1)
+				options += " / ";
+		}
+		return options;
+	}
+	
+	public static String concatOptionsOr(Object... objects) {
+		String options = "";
+		for(int i = 0; i < objects.length; i++) {
+			options += "'" + objects[i].toString() + "'";
+			if(i < objects.length-1)
+				options += " oder ";
+		}
+		return options;
+	}	
 	
 	public static String[] getNames() {
 		String[] names = new String[2];
@@ -73,7 +94,7 @@ public class Print {
 		return new Turn(currentPlayer.getSign(), turnCoords[0], turnCoords[1]);
 	}
 
-	public static void endOfGame(Player winner) {
+	public static void postGame(Player winner) {
 		String wStr = "";
 		if(!winner.getPlayerName().equals("")) {
 			wStr = winner.getPlayerName();

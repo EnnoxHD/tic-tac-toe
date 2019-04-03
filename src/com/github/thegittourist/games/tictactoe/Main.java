@@ -19,6 +19,6 @@ public class Main {
 			} while(!game.getBoard().nextTurnValid(nextTurn));
 			game.nextTurn(nextTurn);
 		}
-		Print.endOfGame(game.getWinner());
+		Print.postGame(game.getWinner());
 	}
 }

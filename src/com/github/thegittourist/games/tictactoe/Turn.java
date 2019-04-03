@@ -1,17 +1,17 @@
 package com.github.thegittourist.games.tictactoe;
 
 public class Turn {
-	private EPlayerSign playerColor = null;
+	private EPlayerSign playerSign = null;
 	private int fieldX = -1, fieldY = -1;
 	
-	public Turn(EPlayerSign playerColor, int fieldX, int fieldY) {
-		this.playerColor = playerColor;
+	public Turn(EPlayerSign playerSign, int fieldX, int fieldY) {
+		this.playerSign = playerSign;
 		this.fieldX = fieldX;
 		this.fieldY = fieldY;
 	}
 	
 	public EPlayerSign getSign() {
-		return playerColor;
+		return playerSign;
 	}
 		
 	public int getX() {
