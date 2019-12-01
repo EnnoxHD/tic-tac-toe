@@ -1,4 +1,4 @@
-package com.github.thegittourist.games.tictactoe;
+package com.github.ennoxhd.games.tictactoe;
 
 public class Player implements Cloneable {
 
