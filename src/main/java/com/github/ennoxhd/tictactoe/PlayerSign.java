@@ -1,5 +1,5 @@
 package com.github.ennoxhd.tictactoe;
 
-public enum EPlayerSign {
+public enum PlayerSign {
 	X, O
 }

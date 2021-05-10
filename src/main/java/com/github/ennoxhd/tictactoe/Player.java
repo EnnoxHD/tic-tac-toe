@@ -2,19 +2,19 @@ package com.github.ennoxhd.tictactoe;
 
 public class Player implements Cloneable {
 
-	private EPlayerSign sign = null;
+	private PlayerSign sign = null;
 	private String name = null;
 	
-	public Player(EPlayerSign sign) {
+	public Player(PlayerSign sign) {
 		this(sign, "");
 	}
 	
-	public Player(EPlayerSign sign, String name) {
+	public Player(PlayerSign sign, String name) {
 		this.sign = sign;
 		this.name = name;
 	}
 	
-	public EPlayerSign getSign() {
+	public PlayerSign getSign() {
 		return sign;
 	}
 	

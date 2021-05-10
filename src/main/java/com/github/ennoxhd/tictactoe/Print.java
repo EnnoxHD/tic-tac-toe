@@ -61,9 +61,9 @@ public class Print {
 		for(int i = 0; i < 3; i++) {
 			System.out.print("|");
 			for(int k = 0; k < 3; k++) {
-				if(board.getRow(i)[k] == EPlayerSign.X) {
+				if(board.getRow(i)[k] == PlayerSign.X) {
 					out = "X";
-				} else if(board.getRow(i)[k] == EPlayerSign.O) {
+				} else if(board.getRow(i)[k] == PlayerSign.O) {
 					out = "O";
 				} else if(board.getRow(i)[k] == null) {
 					out = " ";
