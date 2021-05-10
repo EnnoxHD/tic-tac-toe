@@ -6,7 +6,7 @@ public class Board implements Cloneable {
 	private PlayerSign[][] fields = new PlayerSign[3][3];
 	
 	public Board() {
-		initBoard();
+		this(new PlayerSign[3][3]);
 	}
 	
 	public Board(PlayerSign[][] fields) throws IllegalArgumentException {
@@ -14,14 +14,6 @@ public class Board implements Cloneable {
 			this.fields = fields.clone();
 		} else {
 			throw new IllegalArgumentException();
-		}
-	}
-	
-	private void initBoard() {
-		for(int i = 0; i < fields.length; i++) {
-			for(int k = 0; k < fields[i].length; k++) {
-				fields[i][k] = null;
-			}
 		}
 	}
 	
