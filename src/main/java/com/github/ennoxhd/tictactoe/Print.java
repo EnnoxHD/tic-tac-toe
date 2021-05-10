@@ -6,17 +6,17 @@ public class Print {
 
 	public static final Scanner input = new Scanner(System.in);
 	
-	public static final String YES = "ja";
-	public static final String NO = "nein";
+	public static final String YES = "yes";
+	public static final String NO = "no";
 	
 	public static boolean preGame() {
-		System.out.print("--- Willkommen bei TicTacToe ---\n"
-				+ "Möchten Sie für die Spieler Namen vergeben (" + concatOptions(YES, NO) + ")? ");
+		System.out.print("--- Welcome to TicTacToe ---\n"
+				+ "Do you want to give the players some names (" + concatOptions(YES, NO) + ")? ");
 		String a = "";
 		int i = 0;
 		do {
 			if(i != 0) {
-				System.out.print("Falsche Eingabe, bitte " + concatOptionsOr(YES, NO) + " eingeben: ");
+				System.out.print("Wrong input, please write " + concatOptionsOr(YES, NO) + ": ");
 			}
 			a = input.nextLine();
 			i++;
@@ -43,16 +43,16 @@ public class Print {
 		for(int i = 0; i < objects.length; i++) {
 			options += "'" + objects[i].toString() + "'";
 			if(i < objects.length-1)
-				options += " oder ";
+				options += " or ";
 		}
 		return options;
 	}	
 	
 	public static String[] getNames() {
 		String[] names = new String[2];
-		System.out.print("Geben Sie den Namen des ersten Spielers an: ");
+		System.out.print("Enter the name for the first player: ");
 		names[0] = input.next();
-		System.out.print("Geben Sie den Namen des zweiten Spielers an: ");
+		System.out.print("Enter the name for the second player: ");
 		names[1] = input.next();
 		return names;
 	}
@@ -84,9 +84,9 @@ public class Print {
 		int[] turnCoords = new int[2];
 		do {
 			if(!currentPlayer.getPlayerName().equals("")) {
-				System.out.println("Zug von " + currentPlayer.getPlayerName() + ": ");
+				System.out.println("Move of " + currentPlayer.getPlayerName() + ": ");
 			} else {
-				System.out.println("Zug von " + currentPlayer.getSignString() + ": ");
+				System.out.println("Move of " + currentPlayer.getSignString() + ": ");
 			}
 			System.out.print("X - ");
 			turnCoords[0] = input.nextInt();
@@ -103,7 +103,7 @@ public class Print {
 		} else {
 			wStr = winner.getSignString();
 		}
-		System.out.println("\nDer Gewinner des Spiels ist " + wStr);
+		System.out.println("\nThe winner of the game is: " + wStr);
 		System.out.println("--- --- --- --- ---");
 	}
 }
