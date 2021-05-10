@@ -6,20 +6,22 @@ public class Print {
 
 	public static final Scanner input = new Scanner(System.in);
 	
+	public static final String YES = "ja";
+	public static final String NO = "nein";
+	
 	public static boolean preGame() {
-		final Object[] yesNoVals = (Object[]) EYesNo.values();
 		System.out.print("--- Willkommen bei TicTacToe ---\n"
-				+ "Möchten Sie für die Spieler Namen vergeben (" + concatOptions(yesNoVals) + ")? ");
+				+ "Möchten Sie für die Spieler Namen vergeben (" + concatOptions(YES, NO) + ")? ");
 		String a = "";
 		int i = 0;
 		do {
 			if(i != 0) {
-				System.out.print("Falsche Eingabe, bitte " + concatOptionsOr(yesNoVals) + " eingeben: ");
+				System.out.print("Falsche Eingabe, bitte " + concatOptionsOr(YES, NO) + " eingeben: ");
 			}
 			a = input.nextLine();
 			i++;
-		} while((!a.equals(EYesNo.JA.toString())) && (!a.equals(EYesNo.NEIN.toString())));
-		if(a.equals(EYesNo.JA.toString())) {
+		} while((!YES.equals(a)) && (!NO.equals(a)));
+		if(YES.equals(a)) {
 			return true;
 		} else {
 			return false;
