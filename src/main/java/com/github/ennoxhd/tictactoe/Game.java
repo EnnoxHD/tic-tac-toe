@@ -70,13 +70,7 @@ public class Game {
 	}
 	
 	public Board getBoard() {
-		Board board = null;
-		try {
-			board = (Board) this.board.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-		return board;
+		return new Board(board);
 	}
 	
 	public Player getWinner() {

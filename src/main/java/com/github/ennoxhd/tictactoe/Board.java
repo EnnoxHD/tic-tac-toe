@@ -1,20 +1,36 @@
 package com.github.ennoxhd.tictactoe;
 
-public class Board implements Cloneable {
+public class Board {
 
 	// fields[row][column]
-	private PlayerSign[][] fields = new PlayerSign[3][3];
+	private PlayerSign[][] fields;
 	
 	public Board() {
 		this(new PlayerSign[3][3]);
 	}
 	
-	public Board(PlayerSign[][] fields) throws IllegalArgumentException {
-		if(fields.length == 3 && fields[0].length == 3 && fields[1].length == 3 && fields[2].length == 3) {
-			this.fields = fields.clone();
-		} else {
-			throw new IllegalArgumentException();
+	public Board(Board board) {
+		this(board.fields);
+	}
+	
+	private Board(PlayerSign[][] fields) throws IllegalArgumentException {
+		if(!checkArrayDimensions(fields)) throw new IllegalArgumentException();
+		this.fields = new PlayerSign[3][3];
+		for(int y = 0; y < 3; y++) {
+			for(int x = 0; x < 3; x++) {
+				this.fields[y][x] = fields[y][x];
+			}
 		}
+	}
+	
+	private boolean checkArrayDimensions(PlayerSign[][] fields) {
+		if(fields == null) return false;
+		if(fields.length != 3) return false;
+		for(int i = 0; i < 3; i++) {
+			if(fields[i] == null) return false;
+			if(fields[i].length != 3) return false;
+		}
+		return true;
 	}
 	
 	public PlayerSign[] getRow(int rowNumber) {
@@ -36,11 +52,6 @@ public class Board implements Cloneable {
 		if(nextTurnValid(turn)) {
 			fields[turn.getY()][turn.getX()] = turn.getSign();
 		}
-	}
-	
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
 	}
 	
 	public boolean hasWon() {
