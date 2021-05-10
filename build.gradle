@@ -19,8 +19,8 @@ javadoc {
 }
 
 application {
-   mainModule = 'com.github.ennoxhd.games.tictactoe'
-   mainClass  = 'com.github.ennoxhd.games.tictactoe.Main'
+   mainModule = 'com.github.ennoxhd.tictactoe'
+   mainClass  = 'com.github.ennoxhd.tictactoe.Main'
 }
 
 run {

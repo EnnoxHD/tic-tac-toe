@@ -1,4 +1,4 @@
-module com.github.ennoxhd.games.tictactoe {
+module com.github.ennoxhd.tictactoe {
 	requires java.base;
-	exports com.github.ennoxhd.games.tictactoe;
+	exports com.github.ennoxhd.tictactoe;
 }

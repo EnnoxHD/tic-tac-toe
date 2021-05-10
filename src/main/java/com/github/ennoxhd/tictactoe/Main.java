@@ -1,4 +1,4 @@
-package com.github.ennoxhd.games.tictactoe;
+package com.github.ennoxhd.tictactoe;
 
 public class Main {
 
