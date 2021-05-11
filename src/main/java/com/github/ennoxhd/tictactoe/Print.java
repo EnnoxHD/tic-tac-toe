@@ -53,7 +53,8 @@ public class Print {
 		int[] turnCoords = new int[2];
 		do {
 			if(!currentPlayer.getPlayerName().equals("")) {
-				System.out.println("Move of " + currentPlayer.getPlayerName() + ": ");
+				System.out.println("Move of " + currentPlayer.getPlayerName()
+					+ " (" + currentPlayer.getSignString() + "): ");
 			} else {
 				System.out.println("Move of " + currentPlayer.getSignString() + ": ");
 			}
