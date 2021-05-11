@@ -11,7 +11,13 @@ public class Main {
 			Turn nextTurn = null;
 			while(!game.getBoard().hasWon()) {
 				print.print(game.getBoard().toString());
+				boolean invalidTurn = false;
 				do {
+					if(invalidTurn) {
+						print.invalidTurn(nextTurn);
+					} else {
+						invalidTurn = true;
+					}
 					nextTurn = print.getTurnFromInput(game.getCurrentPlayer());
 				} while(!game.getBoard().nextTurnValid(nextTurn));
 				game.nextTurn(nextTurn);

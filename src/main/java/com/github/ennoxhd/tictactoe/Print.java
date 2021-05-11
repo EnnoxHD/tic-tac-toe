@@ -86,4 +86,8 @@ public class Print {
 	public void print(String string) {
 		System.out.print(string);
 	}
+
+	public void invalidTurn(Turn nextTurn) {
+		System.out.println("The turn " + nextTurn.toString() + " is not valid!");
+	}
 }

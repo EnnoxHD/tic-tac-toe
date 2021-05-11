@@ -21,4 +21,9 @@ public class Turn {
 	public int getY() {
 		return fieldY;
 	}
+	
+	@Override
+	public String toString() {
+		return "(x:" + getX() + ",y:" + getY() + ")";
+	}
 }
