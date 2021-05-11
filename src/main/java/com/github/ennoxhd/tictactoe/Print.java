@@ -58,9 +58,9 @@ public class Print {
 			} else {
 				System.out.println("Move of " + currentPlayer.getSignString() + ": ");
 			}
-			System.out.print("X - ");
+			System.out.print("x - ");
 			turnCoords[0] = input.nextInt();
-			System.out.print("Y - ");
+			System.out.print("y - ");
 			turnCoords[1] = input.nextInt();
 		} while(turnCoords[0] < 0 || turnCoords[0] > 2 || turnCoords[1] < 0 || turnCoords[1] > 2);
 		return new Turn(currentPlayer.getSign(), turnCoords[0], turnCoords[1]);
