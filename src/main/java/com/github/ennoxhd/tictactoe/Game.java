@@ -29,17 +29,9 @@ public class Game {
 	private Player getPlayerByColor(PlayerSign color) throws IllegalArgumentException {
 		switch(color) {
 		case X:
-			try {
-				return (Player) players[0].clone();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
+			return new Player(players[0]);
 		case O:
-			try {
-				return (Player) players[1].clone();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
+			return new Player(players[1]);
 		default:
 			throw new IllegalArgumentException();
 		}

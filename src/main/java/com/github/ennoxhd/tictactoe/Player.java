@@ -14,6 +14,10 @@ public class Player implements Cloneable {
 		this.name = name;
 	}
 	
+	public Player(Player player) {
+		this(player.getSign(), player.getPlayerName());
+	}
+	
 	public PlayerSign getSign() {
 		return sign;
 	}
@@ -24,10 +28,5 @@ public class Player implements Cloneable {
 	
 	public String getPlayerName() {
 		return name;
-	}
-	
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
 	}
 }
