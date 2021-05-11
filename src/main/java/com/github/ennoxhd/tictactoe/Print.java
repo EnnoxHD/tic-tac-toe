@@ -3,13 +3,17 @@ package com.github.ennoxhd.tictactoe;
 import java.util.Scanner;
 
 public class Print {
-
-	public static final Scanner input = new Scanner(System.in);
 	
-	public static final String YES = "yes";
-	public static final String NO = "no";
+	private static final String YES = "yes";
+	private static final String NO = "no";
 	
-	public static Game preGame() {
+	private Scanner input;
+	
+	public Print(Scanner input) {
+		this.input = input;
+	}
+	
+	public Game preGame() {
 		final String options = giveOptions(YES, NO);
 		System.out.print("--- Welcome to TicTacToe ---\n"
 				+ "Do you want to give the players some names (" + options + ")? ");
@@ -24,16 +28,18 @@ public class Print {
 		} while((!YES.equals(a)) && (!NO.equals(a)));
 		if(YES.equals(a)) {
 			System.out.print("Enter the name for the first player: ");
-			final String firstPlayerName = input.next();
+			String firstPlayerName = "";
+			firstPlayerName = input.next();
 			System.out.print("Enter the name for the second player: ");
-			final String secondPlayerName = input.next();
+			String secondPlayerName = "";
+			secondPlayerName = input.next();
 			return new Game(firstPlayerName, secondPlayerName);
 		} else {
 			return new Game();
 		}
 	}
 	
-	public static String giveOptions(String... string) {
+	public String giveOptions(String... string) {
 		String options = "";
 		for(int i = 0; i < string.length; i++) {
 			options += "'" + string[i].toString() + "'";
@@ -42,7 +48,7 @@ public class Print {
 		return options;
 	}
 	
-	public static void printBoard(Board board) {
+	public void printBoard(Board board) {
 		String out = "";
 		System.out.println("-------");
 		for(int i = 0; i < 3; i++) {
@@ -64,7 +70,7 @@ public class Print {
 		System.out.println("-------");
 	}
 	
-	public static Turn getTurnFromInput(Player currentPlayer) {
+	public Turn getTurnFromInput(Player currentPlayer) {
 		System.out.println();
 		int[] turnCoords = new int[2];
 		do {
@@ -81,7 +87,7 @@ public class Print {
 		return new Turn(currentPlayer.getSign(), turnCoords[0], turnCoords[1]);
 	}
 
-	public static void postGame(Player winner) {
+	public void postGame(Player winner) {
 		String wStr = "";
 		if(!winner.getPlayerName().equals("")) {
 			wStr = winner.getPlayerName();
