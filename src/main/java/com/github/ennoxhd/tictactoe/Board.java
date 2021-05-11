@@ -102,4 +102,28 @@ public class Board {
 		}
 		return hasWon;
 	}
+	
+	@Override
+	public String toString() {
+		String out = "";
+		out += "-------\n";
+		for(int i = 0; i < 3; i++) {
+			out += "|";
+			for(int k = 0; k < 3; k++) {
+				String boardSign = "";
+				if(getRow(i)[k] == PlayerSign.X) {
+					boardSign = "X";
+				} else if(getRow(i)[k] == PlayerSign.O) {
+					boardSign = "O";
+				} else if(getRow(i)[k] == null) {
+					boardSign = " ";
+				} else {
+					throw new IllegalArgumentException();
+				}
+				out += boardSign + "|";
+			}
+			out += "\n";
+		}
+		return out += "-------\n";
+	}
 }

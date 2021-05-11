@@ -10,7 +10,7 @@ public class Main {
 			Game game = print.preGame();
 			Turn nextTurn = null;
 			while(!game.getBoard().hasWon()) {
-				print.printBoard(game.getBoard());
+				print.print(game.getBoard().toString());
 				do {
 					nextTurn = print.getTurnFromInput(game.getCurrentPlayer());
 				} while(!game.getBoard().nextTurnValid(nextTurn));

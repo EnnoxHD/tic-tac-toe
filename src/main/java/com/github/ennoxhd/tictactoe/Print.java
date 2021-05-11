@@ -48,28 +48,6 @@ public class Print {
 		return options;
 	}
 	
-	public void printBoard(Board board) {
-		String out = "";
-		System.out.println("-------");
-		for(int i = 0; i < 3; i++) {
-			System.out.print("|");
-			for(int k = 0; k < 3; k++) {
-				if(board.getRow(i)[k] == PlayerSign.X) {
-					out = "X";
-				} else if(board.getRow(i)[k] == PlayerSign.O) {
-					out = "O";
-				} else if(board.getRow(i)[k] == null) {
-					out = " ";
-				} else {
-					throw new IllegalArgumentException();
-				}
-				System.out.print(out + "|");
-			}
-			System.out.print("\n");
-		}
-		System.out.println("-------");
-	}
-	
 	public Turn getTurnFromInput(Player currentPlayer) {
 		System.out.println();
 		int[] turnCoords = new int[2];
@@ -96,5 +74,9 @@ public class Print {
 		}
 		System.out.println("\nThe winner of the game is: " + wStr);
 		System.out.println("--- --- --- --- ---");
+	}
+	
+	public void print(String string) {
+		System.out.print(string);
 	}
 }
