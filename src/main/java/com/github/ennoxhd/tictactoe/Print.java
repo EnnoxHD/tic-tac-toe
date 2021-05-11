@@ -9,7 +9,7 @@ public class Print {
 	public static final String YES = "yes";
 	public static final String NO = "no";
 	
-	public static boolean preGame() {
+	public static Game preGame() {
 		final String options = giveOptions(YES, NO);
 		System.out.print("--- Welcome to TicTacToe ---\n"
 				+ "Do you want to give the players some names (" + options + ")? ");
@@ -23,9 +23,13 @@ public class Print {
 			i++;
 		} while((!YES.equals(a)) && (!NO.equals(a)));
 		if(YES.equals(a)) {
-			return true;
+			System.out.print("Enter the name for the first player: ");
+			final String firstPlayerName = input.next();
+			System.out.print("Enter the name for the second player: ");
+			final String secondPlayerName = input.next();
+			return new Game(firstPlayerName, secondPlayerName);
 		} else {
-			return false;
+			return new Game();
 		}
 	}
 	
@@ -36,15 +40,6 @@ public class Print {
 			if(i < string.length - 1) options += " or ";
 		}
 		return options;
-	}	
-	
-	public static String[] getNames() {
-		String[] names = new String[2];
-		System.out.print("Enter the name for the first player: ");
-		names[0] = input.next();
-		System.out.print("Enter the name for the second player: ");
-		names[1] = input.next();
-		return names;
 	}
 	
 	public static void printBoard(Board board) {

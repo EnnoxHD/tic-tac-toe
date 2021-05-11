@@ -3,14 +3,7 @@ package com.github.ennoxhd.tictactoe;
 public class Main {
 
 	public static void main(String[] args) {
-		Game game = null;
-		boolean playerNames = Print.preGame();
-		if(playerNames) {
-			String[] names = Print.getNames();
-			game = new Game(names[0], names[1]);
-		} else {
-			game = new Game();
-		}
+		Game game = Print.preGame();
 		Turn nextTurn = null;
 		while(!game.getBoard().hasWon()) {
 			Print.printBoard(game.getBoard());
