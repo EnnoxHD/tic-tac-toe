@@ -51,7 +51,13 @@ public class Print {
 	public Turn getTurnFromInput(Player currentPlayer) {
 		System.out.println();
 		int[] turnCoords = new int[2];
+		boolean gotInvalidInput = false;
 		do {
+			if(gotInvalidInput) {
+				System.out.println("Please enter coordinates 0 or 1 or 2 for x and y direction!");
+			} else {
+				gotInvalidInput = true;
+			}
 			if(!currentPlayer.getPlayerName().equals("")) {
 				System.out.println("Move of " + currentPlayer.getPlayerName()
 					+ " (" + currentPlayer.getSignString() + "): ");
