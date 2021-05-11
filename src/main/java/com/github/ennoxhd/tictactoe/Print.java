@@ -10,13 +10,14 @@ public class Print {
 	public static final String NO = "no";
 	
 	public static boolean preGame() {
+		final String options = giveOptions(YES, NO);
 		System.out.print("--- Welcome to TicTacToe ---\n"
-				+ "Do you want to give the players some names (" + concatOptions(YES, NO) + ")? ");
+				+ "Do you want to give the players some names (" + options + ")? ");
 		String a = "";
 		int i = 0;
 		do {
 			if(i != 0) {
-				System.out.print("Wrong input, please write " + concatOptionsOr(YES, NO) + ": ");
+				System.out.print("Wrong input, please write " + options + ": ");
 			}
 			a = input.nextLine();
 			i++;
@@ -28,22 +29,11 @@ public class Print {
 		}
 	}
 	
-	public static String concatOptions(Object... objects) {
+	public static String giveOptions(String... string) {
 		String options = "";
-		for(int i = 0; i < objects.length; i++) {
-			options += objects[i].toString();
-			if(i < objects.length-1)
-				options += " / ";
-		}
-		return options;
-	}
-	
-	public static String concatOptionsOr(Object... objects) {
-		String options = "";
-		for(int i = 0; i < objects.length; i++) {
-			options += "'" + objects[i].toString() + "'";
-			if(i < objects.length-1)
-				options += " or ";
+		for(int i = 0; i < string.length; i++) {
+			options += "'" + string[i].toString() + "'";
+			if(i < string.length - 1) options += " or ";
 		}
 		return options;
 	}	
