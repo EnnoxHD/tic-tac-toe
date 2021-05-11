@@ -1,6 +1,6 @@
 package com.github.ennoxhd.tictactoe;
 
-public class Player implements Cloneable {
+public class Player {
 
 	private PlayerSign sign = null;
 	private String name = null;
