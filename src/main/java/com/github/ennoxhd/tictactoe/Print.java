@@ -34,6 +34,15 @@ public class Print {
 		setOutput(new PrintStream(out));
 	}
 	
+	private String giveOptions(String... string) {
+		String options = "";
+		for(int i = 0; i < string.length; i++) {
+			options += "'" + string[i].toString() + "'";
+			if(i < string.length - 1) options += " or ";
+		}
+		return options;
+	}
+	
 	public Game preGame() {
 		final String options = giveOptions(YES, NO);
 		getOutput().print("--- Welcome to TicTacToe ---\n"
@@ -58,15 +67,6 @@ public class Print {
 		} else {
 			return new Game();
 		}
-	}
-	
-	public String giveOptions(String... string) {
-		String options = "";
-		for(int i = 0; i < string.length; i++) {
-			options += "'" + string[i].toString() + "'";
-			if(i < string.length - 1) options += " or ";
-		}
-		return options;
 	}
 	
 	public Turn getTurnFromInput(Player currentPlayer) {
