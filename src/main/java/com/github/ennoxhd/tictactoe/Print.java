@@ -13,31 +13,47 @@ public class Print {
 	private Scanner input;
 	private PrintStream output;
 	
+	private Scanner getInput() {
+		return input;
+	}
+
+	private void setInput(Scanner input) {
+		this.input = input;
+	}
+
+	private PrintStream getOutput() {
+		return output;
+	}
+
+	private void setOutput(PrintStream output) {
+		this.output = output;
+	}
+
 	public Print(InputStream in, OutputStream out) {
-		input = new Scanner(in);
-		output = new PrintStream(out);
+		setInput(new Scanner(in));
+		setOutput(new PrintStream(out));
 	}
 	
 	public Game preGame() {
 		final String options = giveOptions(YES, NO);
-		output.print("--- Welcome to TicTacToe ---\n"
+		getOutput().print("--- Welcome to TicTacToe ---\n"
 				+ "Do you want to give the players some names (" + options + ")? ");
 		String a = "";
 		int i = 0;
 		do {
 			if(i != 0) {
-				output.print("Wrong input, please write " + options + ": ");
+				getOutput().print("Wrong input, please write " + options + ": ");
 			}
-			a = input.nextLine();
+			a = getInput().nextLine();
 			i++;
 		} while((!YES.equals(a)) && (!NO.equals(a)));
 		if(YES.equals(a)) {
-			output.print("Enter the name for the first player: ");
+			getOutput().print("Enter the name for the first player: ");
 			String firstPlayerName = "";
-			firstPlayerName = input.next();
-			output.print("Enter the name for the second player: ");
+			firstPlayerName = getInput().next();
+			getOutput().print("Enter the name for the second player: ");
 			String secondPlayerName = "";
-			secondPlayerName = input.next();
+			secondPlayerName = getInput().next();
 			return new Game(firstPlayerName, secondPlayerName);
 		} else {
 			return new Game();
@@ -54,25 +70,25 @@ public class Print {
 	}
 	
 	public Turn getTurnFromInput(Player currentPlayer) {
-		output.println();
+		getOutput().println();
 		int[] turnCoords = new int[2];
 		boolean gotInvalidInput = false;
 		do {
 			if(gotInvalidInput) {
-				output.println("Please enter coordinates 0 or 1 or 2 for x and y direction!");
+				getOutput().println("Please enter coordinates 0 or 1 or 2 for x and y direction!");
 			} else {
 				gotInvalidInput = true;
 			}
 			if(!currentPlayer.getPlayerName().equals("")) {
-				output.println("Move of " + currentPlayer.getPlayerName()
+				getOutput().println("Move of " + currentPlayer.getPlayerName()
 					+ " (" + currentPlayer.getSignString() + "): ");
 			} else {
-				output.println("Move of " + currentPlayer.getSignString() + ": ");
+				getOutput().println("Move of " + currentPlayer.getSignString() + ": ");
 			}
-			output.print("x - ");
-			turnCoords[0] = input.nextInt();
-			output.print("y - ");
-			turnCoords[1] = input.nextInt();
+			getOutput().print("x - ");
+			turnCoords[0] = getInput().nextInt();
+			getOutput().print("y - ");
+			turnCoords[1] = getInput().nextInt();
 		} while(turnCoords[0] < 0 || turnCoords[0] > 2 || turnCoords[1] < 0 || turnCoords[1] > 2);
 		return new Turn(currentPlayer.getSign(), turnCoords[0], turnCoords[1]);
 	}
@@ -84,15 +100,15 @@ public class Print {
 		} else {
 			wStr = winner.getSignString();
 		}
-		output.println("\nThe winner of the game is: " + wStr);
-		output.println("--- --- --- --- ---");
+		getOutput().println("\nThe winner of the game is: " + wStr);
+		getOutput().println("--- --- --- --- ---");
 	}
 	
 	public void print(String string) {
-		output.print(string);
+		getOutput().print(string);
 	}
 
 	public void invalidTurn(Turn nextTurn) {
-		output.println("The turn " + nextTurn.toString() + " is not valid!");
+		getOutput().println("The turn " + nextTurn.toString() + " is not valid!");
 	}
 }
