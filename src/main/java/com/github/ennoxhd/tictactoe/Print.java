@@ -45,8 +45,10 @@ public class Print {
 	
 	public Game preGame() {
 		final String options = giveOptions(YES, NO);
-		getOutput().print("--- Welcome to TicTacToe ---\n"
-				+ "Do you want to give the players some names (" + options + ")? ");
+		getOutput().print("""
+				--- Welcome to TicTacToe ---
+				Do you want to give the players some names (%s)? """
+				.formatted(options));
 		String a = "";
 		int i = 0;
 		do {
