@@ -42,7 +42,7 @@ public class Game {
 	}
 		
 	public void nextTurn(Turn turn) {
-		if(turn.getSign().equals(players[currentPlayerIndex].getSign()) && board.nextTurnValid(turn)) {
+		if(turn.sign().equals(players[currentPlayerIndex].getSign()) && board.nextTurnValid(turn)) {
 			board.nextTurn(turn);
 			switchPlayers();
 		}

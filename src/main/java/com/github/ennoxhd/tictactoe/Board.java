@@ -43,14 +43,14 @@ public class Board {
 	}
 	
 	public boolean nextTurnValid(Turn turn) {
-		return turn.getX() >= 0 && turn.getX() <= 2
-			&& turn.getY() >= 0 && turn.getY() <= 2
-			&& fields[turn.getY()][turn.getX()] == null;
+		return turn.x() >= 0 && turn.x() <= 2
+			&& turn.y() >= 0 && turn.y() <= 2
+			&& fields[turn.y()][turn.x()] == null;
 	}
 	
 	public void nextTurn(Turn turn) {
 		if(nextTurnValid(turn)) {
-			fields[turn.getY()][turn.getX()] = turn.getSign();
+			fields[turn.y()][turn.x()] = turn.sign();
 		}
 	}
 	
