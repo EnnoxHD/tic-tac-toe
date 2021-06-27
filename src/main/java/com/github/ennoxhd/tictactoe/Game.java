@@ -1,68 +1,60 @@
 package com.github.ennoxhd.tictactoe;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Game {
 
 	private Board board = null;
-	private int currentPlayerIndex = 0;
-	private Player[] players = null;
+	private PlayerSign currentPlayer = null;
+	private Map<PlayerSign, Player> players = null;
 	
 	public Game() {
+		this("", "");
+	}
+	
+	public Game(String nameX, String nameO) {
 		board = new Board();
-		currentPlayerIndex = 0;
-		players = new Player[2];
-		players[0] = new Player(PlayerSign.X);
-		players[1] = new Player(PlayerSign.O);
+		currentPlayer = PlayerSign.X;
+		players = new HashMap<>();
+		players.put(PlayerSign.X, new Player(PlayerSign.X, nameX));
+		players.put(PlayerSign.O, new Player(PlayerSign.O, nameO));
 	}
 	
-	public Game(String namePlayerRed, String namePlayerBlue) {
-		board = new Board();
-		currentPlayerIndex = 0;
-		players = new Player[2];
-		players[0] = new Player(PlayerSign.X, namePlayerRed);
-		players[1] = new Player(PlayerSign.O, namePlayerBlue);
+	public Board getBoard() {
+		return board;
 	}
 	
-	public PlayerSign getCurrentPlayerColor() {
-		return players[currentPlayerIndex].getSign();
+	public Player getPlayerBySign(PlayerSign sign) {
+		return players.get(sign);
 	}
 	
-	private Player getPlayerByColor(PlayerSign color) throws IllegalArgumentException {
-		switch(color) {
-		case X:
-			return new Player(players[0]);
-		case O:
-			return new Player(players[1]);
-		default:
-			throw new IllegalArgumentException();
-		}
+	public PlayerSign getCurrentPlayerSign() {
+		return currentPlayer;
 	}
 	
 	public Player getCurrentPlayer() {
-		return getPlayerByColor(getCurrentPlayerColor());
+		return getPlayerBySign(getCurrentPlayerSign());
 	}
 		
 	public void nextTurn(Turn turn) {
-		if(turn.sign().equals(players[currentPlayerIndex].getSign()) && board.nextTurnValid(turn)) {
+		if(turn.sign().equals(getCurrentPlayerSign()) && board.nextTurnValid(turn)) {
 			board.nextTurn(turn);
 			switchPlayers();
 		}
 	}
 	
 	private void switchPlayers() {
-		switch(currentPlayerIndex) {
-		case 0:
-			currentPlayerIndex = 1;
+		switch(currentPlayer) {
+		case X:
+			currentPlayer = PlayerSign.O;
 			break;
-		case 1:
-			currentPlayerIndex = 0;
+		case O:
+			currentPlayer = PlayerSign.X;
 			break;
 		default:
 			throw new IllegalArgumentException();
 		}
-	}
-	
-	public Board getBoard() {
-		return new Board(board);
 	}
 	
 	public Player getWinner() {
@@ -101,24 +93,24 @@ public class Game {
 			}
 			
 			//Abfragen
-			PlayerSign color = null;
+			PlayerSign sign = null;
 			for(int i = 0; i < 3; i++) {
 				if(hasWonRow[i] == PlayerSign.X || hasWonColumn[i] == PlayerSign.X) {
-					color = PlayerSign.X;
+					sign = PlayerSign.X;
 				}
 				if(hasWonRow[i] == PlayerSign.O || hasWonColumn[i] == PlayerSign.O) {
-					color = PlayerSign.O;
+					sign = PlayerSign.O;
 				}
 				if(i < 2) {
 					if(hasWonX[i] == PlayerSign.X) {
-						color = PlayerSign.X;
+						sign = PlayerSign.X;
 					}
 					if(hasWonX[i] == PlayerSign.O) {
-						color = PlayerSign.O;
+						sign = PlayerSign.O;
 					}
 				}
 			}
-			player = getPlayerByColor(color);
+			player = getPlayerBySign(sign);
 		}
 		return player;
 	}
