@@ -43,9 +43,7 @@ public class Board {
 	}
 	
 	public boolean nextTurnValid(Turn turn) {
-		return turn.x() >= 0 && turn.x() <= 2
-			&& turn.y() >= 0 && turn.y() <= 2
-			&& fields[turn.y()][turn.x()] == null;
+		return fields[turn.y()][turn.x()] == null;
 	}
 	
 	public void nextTurn(Turn turn) {

@@ -73,14 +73,8 @@ public class Print {
 	
 	public Turn getTurnFromInput(Player currentPlayer) {
 		getOutput().println();
-		int[] turnCoords = new int[2];
-		boolean gotInvalidInput = false;
-		do {
-			if(gotInvalidInput) {
-				getOutput().println("Please enter coordinates 0 or 1 or 2 for x and y direction!");
-			} else {
-				gotInvalidInput = true;
-			}
+		Turn nextTurn = null;
+		while(nextTurn == null) {
 			if(!currentPlayer.getPlayerName().equals("")) {
 				getOutput().println("Move of " + currentPlayer.getPlayerName()
 					+ " (" + currentPlayer.getSignString() + "): ");
@@ -88,11 +82,17 @@ public class Print {
 				getOutput().println("Move of " + currentPlayer.getSignString() + ": ");
 			}
 			getOutput().print("x - ");
-			turnCoords[0] = getInput().nextInt();
+			final int x = getInput().nextInt();
 			getOutput().print("y - ");
-			turnCoords[1] = getInput().nextInt();
-		} while(turnCoords[0] < 0 || turnCoords[0] > 2 || turnCoords[1] < 0 || turnCoords[1] > 2);
-		return new Turn(currentPlayer.getSign(), turnCoords[0], turnCoords[1]);
+			final int y = getInput().nextInt();
+			try {
+				nextTurn = new Turn(currentPlayer.getSign(), x, y);
+			} catch(IllegalArgumentException e) {
+				nextTurn = null;
+				getOutput().println("Please enter coordinates in valid range [0;2] for x and y direction!");
+			}
+		}
+		return nextTurn;
 	}
 
 	public void postGame(Player winner) {
