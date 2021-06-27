@@ -11,18 +11,16 @@ public class Main {
 		IOConfiguration ioConfig = new IOConfiguration(System.in, System.out);
 		Print print = new Print(ioConfig);
 		Game game = print.preGame();
-		Turn nextTurn = null;
 		while(!game.getBoard().hasWon()) {
+			Turn nextTurn = null;
 			print.print(game.getBoard().toString());
-			boolean invalidTurn = false;
-			do {
-				if(invalidTurn) {
-					print.invalidTurn(nextTurn);
-				} else {
-					invalidTurn = true;
-				}
+			while(nextTurn == null) {
 				nextTurn = print.getTurnFromInput(game.getCurrentPlayer());
-			} while(!game.getBoard().nextTurnValid(nextTurn));
+				if(!game.getBoard().nextTurnValid(nextTurn)) {
+					print.invalidTurn(nextTurn);
+					nextTurn = null;
+				}
+			}
 			game.nextTurn(nextTurn);
 		}
 		print.postGame(game.getWinner());
