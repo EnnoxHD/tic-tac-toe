@@ -10,25 +10,25 @@ public class Print {
 	private Scanner input;
 	private PrintStream output;
 	
-	private Scanner getInput() {
+	private Scanner fromInput() {
 		return input;
 	}
 
-	private void setInput(Scanner input) {
-		this.input = input;
+	private void setInput(InputStream input) {
+		this.input = new Scanner(input);
 	}
 
-	private PrintStream getOutput() {
+	private PrintStream toOutput() {
 		return output;
 	}
 
-	private void setOutput(PrintStream output) {
-		this.output = output;
+	private void setOutput(OutputStream output) {
+		this.output = new PrintStream(output);
 	}
 
-	public Print(InputStream in, OutputStream out) {
-		setInput(new Scanner(in));
-		setOutput(new PrintStream(out));
+	public Print(IOConfiguration config) {
+		setInput(config.in());
+		setOutput(config.out());
 	}
 	
 	private String giveOptions(String... string) {
@@ -44,7 +44,7 @@ public class Print {
 		final String YES = "yes";
 		final String NO = "no";
 		final String options = giveOptions(YES, NO);
-		getOutput().print("""
+		toOutput().print("""
 				--- Welcome to TicTacToe ---
 				Do you want to give the players some names (%s)?\s"""
 				.formatted(options));
@@ -52,18 +52,18 @@ public class Print {
 		int i = 0;
 		do {
 			if(i != 0) {
-				getOutput().print("Wrong input, please write " + options + ": ");
+				toOutput().print("Wrong input, please write " + options + ": ");
 			}
-			a = getInput().nextLine();
+			a = fromInput().nextLine();
 			i++;
 		} while((!YES.equals(a)) && (!NO.equals(a)));
 		if(YES.equals(a)) {
-			getOutput().print("Enter the name for the first player: ");
+			toOutput().print("Enter the name for the first player: ");
 			String firstPlayerName = "";
-			firstPlayerName = getInput().next();
-			getOutput().print("Enter the name for the second player: ");
+			firstPlayerName = fromInput().next();
+			toOutput().print("Enter the name for the second player: ");
 			String secondPlayerName = "";
-			secondPlayerName = getInput().next();
+			secondPlayerName = fromInput().next();
 			return new Game(firstPlayerName, secondPlayerName);
 		} else {
 			return new Game();
@@ -71,24 +71,24 @@ public class Print {
 	}
 	
 	public Turn getTurnFromInput(Player currentPlayer) {
-		getOutput().println();
+		toOutput().println();
 		Turn nextTurn = null;
 		while(nextTurn == null) {
 			if(!currentPlayer.getPlayerName().equals("")) {
-				getOutput().println("Move of " + currentPlayer.getPlayerName()
+				toOutput().println("Move of " + currentPlayer.getPlayerName()
 					+ " (" + currentPlayer.getSignString() + "): ");
 			} else {
-				getOutput().println("Move of " + currentPlayer.getSignString() + ": ");
+				toOutput().println("Move of " + currentPlayer.getSignString() + ": ");
 			}
-			getOutput().print("x - ");
-			final int x = getInput().nextInt();
-			getOutput().print("y - ");
-			final int y = getInput().nextInt();
+			toOutput().print("x - ");
+			final int x = fromInput().nextInt();
+			toOutput().print("y - ");
+			final int y = fromInput().nextInt();
 			try {
 				nextTurn = new Turn(currentPlayer.getSign(), x, y);
 			} catch(IllegalArgumentException e) {
 				nextTurn = null;
-				getOutput().println("Please enter coordinates in valid range [0;2] for x and y direction!");
+				toOutput().println("Please enter coordinates in valid range [0;2] for x and y direction!");
 			}
 		}
 		return nextTurn;
@@ -101,15 +101,15 @@ public class Print {
 		} else {
 			wStr = winner.getSignString();
 		}
-		getOutput().println("\nThe winner of the game is: " + wStr);
-		getOutput().println("--- --- --- --- ---");
+		toOutput().println("\nThe winner of the game is: " + wStr);
+		toOutput().println("--- --- --- --- ---");
 	}
 	
 	public void print(String string) {
-		getOutput().print(string);
+		toOutput().print(string);
 	}
 
 	public void invalidTurn(Turn nextTurn) {
-		getOutput().println("The turn " + nextTurn.toString() + " is not valid!");
+		toOutput().println("The turn " + nextTurn.toString() + " is not valid!");
 	}
 }

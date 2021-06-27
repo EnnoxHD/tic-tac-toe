@@ -3,7 +3,8 @@ package com.github.ennoxhd.tictactoe;
 public class Main {
 
 	public static void main(String[] args) {
-		Print print = new Print(System.in, System.out);
+		IOConfiguration ioConfig = new IOConfiguration(System.in, System.out);
+		Print print = new Print(ioConfig);
 		Game game = print.preGame();
 		Turn nextTurn = null;
 		while(!game.getBoard().hasWon()) {
