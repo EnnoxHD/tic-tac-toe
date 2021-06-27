@@ -5,19 +5,18 @@ import com.github.ennoxhd.tictactoe.model.Turn;
 
 public class Board {
 
-	// fields[row][column]
+	/**
+	 * fields[row][column]
+	 */
 	private PlayerSign[][] fields;
 	
 	public Board() {
 		this(new PlayerSign[3][3]);
 	}
 	
-	public Board(Board board) {
-		this(board.fields);
-	}
-	
 	private Board(PlayerSign[][] fields) throws IllegalArgumentException {
-		if(!checkArrayDimensions(fields)) throw new IllegalArgumentException();
+		if(!checkArrayDimensions(fields))
+			throw new IllegalArgumentException("Incorrect array dimensions. Must be 3-by-3.");
 		this.fields = new PlayerSign[3][3];
 		for(int y = 0; y < 3; y++) {
 			for(int x = 0; x < 3; x++) {
@@ -55,8 +54,7 @@ public class Board {
 		}
 	}
 	
-	public boolean hasWon() {
-		boolean hasWon = false;
+	public PlayerSign getWinner() {		
 		PlayerSign[] hasWonRow = new PlayerSign[3], hasWonColumn = new PlayerSign[3], hasWonX = new PlayerSign[2];
 		for(int i = 0; i < 3; i++) {
 			//Rows
@@ -90,18 +88,24 @@ public class Board {
 		}
 		
 		//Abfragen
+		PlayerSign sign = null;
 		for(int i = 0; i < 3; i++) {
 			if(hasWonRow[i] == PlayerSign.X || hasWonColumn[i] == PlayerSign.X) {
-				hasWon = true;
+				sign = PlayerSign.X;
 			}
 			if(hasWonRow[i] == PlayerSign.O || hasWonColumn[i] == PlayerSign.O) {
-				hasWon = true;
+				sign = PlayerSign.O;
 			}
-			if(i < 2 && (hasWonX[i] == PlayerSign.X || hasWonX[i] == PlayerSign.O)) {
-				hasWon = true;
+			if(i < 2) {
+				if(hasWonX[i] == PlayerSign.X) {
+					sign = PlayerSign.X;
+				}
+				if(hasWonX[i] == PlayerSign.O) {
+					sign = PlayerSign.O;
+				}
 			}
 		}
-		return hasWon;
+		return sign;
 	}
 	
 	@Override
@@ -111,16 +115,8 @@ public class Board {
 		for(int i = 0; i < 3; i++) {
 			out += "|";
 			for(int k = 0; k < 3; k++) {
-				String boardSign = "";
-				if(getRow(i)[k] == PlayerSign.X) {
-					boardSign = "X";
-				} else if(getRow(i)[k] == PlayerSign.O) {
-					boardSign = "O";
-				} else if(getRow(i)[k] == null) {
-					boardSign = " ";
-				} else {
-					throw new IllegalArgumentException();
-				}
+				PlayerSign field = getRow(i)[k];
+				String boardSign = field != null ? field.toString() : " ";
 				out += boardSign + "|";
 			}
 			out += "\n";

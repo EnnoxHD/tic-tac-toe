@@ -30,6 +30,8 @@ public class Game {
 	}
 	
 	Player getPlayerBySign(PlayerSign sign) {
+		if(sign == null)
+			return null;
 		return players.get(sign);
 	}
 	
@@ -62,60 +64,10 @@ public class Game {
 	}
 	
 	public Player getWinner() {
-		Player player = null;
-		if(board.hasWon()) {
-			PlayerSign[] hasWonRow = new PlayerSign[3], hasWonColumn = new PlayerSign[3], hasWonX = new PlayerSign[2];
-			for(int i = 0; i < 3; i++) {
-				//Rows
-				if(board.getRow(i)[0] == PlayerSign.X && board.getRow(i)[1] == PlayerSign.X && board.getRow(i)[2] == PlayerSign.X) {
-					hasWonRow[i] = PlayerSign.X;
-				}
-				if(board.getRow(i)[0] == PlayerSign.O && board.getRow(i)[1] == PlayerSign.O && board.getRow(i)[2] == PlayerSign.O) {
-					hasWonRow[i] = PlayerSign.O;
-				}
-				//Columns
-				if(board.getColumn(i)[0] == PlayerSign.X && board.getColumn(i)[1] == PlayerSign.X && board.getColumn(i)[2] == PlayerSign.X) {
-					hasWonColumn[i] = PlayerSign.X;
-				}
-				if(board.getColumn(i)[0] == PlayerSign.O && board.getColumn(i)[1] == PlayerSign.O && board.getColumn(i)[2] == PlayerSign.O) {
-					hasWonColumn[i] = PlayerSign.O;
-				}
-			}
-			//X fuer \
-			if(board.getRow(0)[0] == PlayerSign.X && board.getRow(1)[1] == PlayerSign.X && board.getRow(2)[2] == PlayerSign.X) {
-				hasWonX[0] = PlayerSign.X;
-			}
-			if(board.getRow(0)[0] == PlayerSign.O && board.getRow(1)[1] == PlayerSign.O && board.getRow(2)[2] == PlayerSign.O) {
-				hasWonX[0] = PlayerSign.O;
-			}
-			//X fuer /
-			if(board.getRow(0)[2] == PlayerSign.X && board.getRow(1)[1] == PlayerSign.X && board.getRow(2)[0] == PlayerSign.X) {
-				hasWonX[0] = PlayerSign.X;
-			}
-			if(board.getRow(0)[2] == PlayerSign.O && board.getRow(1)[1] == PlayerSign.O && board.getRow(2)[0] == PlayerSign.O) {
-				hasWonX[0] = PlayerSign.O;
-			}
-			
-			//Abfragen
-			PlayerSign sign = null;
-			for(int i = 0; i < 3; i++) {
-				if(hasWonRow[i] == PlayerSign.X || hasWonColumn[i] == PlayerSign.X) {
-					sign = PlayerSign.X;
-				}
-				if(hasWonRow[i] == PlayerSign.O || hasWonColumn[i] == PlayerSign.O) {
-					sign = PlayerSign.O;
-				}
-				if(i < 2) {
-					if(hasWonX[i] == PlayerSign.X) {
-						sign = PlayerSign.X;
-					}
-					if(hasWonX[i] == PlayerSign.O) {
-						sign = PlayerSign.O;
-					}
-				}
-			}
-			player = getPlayerBySign(sign);
-		}
-		return player;
+		return getPlayerBySign(getBoard().getWinner());
+	}
+	
+	public boolean hasWon() {
+		return getWinner() != null;
 	}
 }
