@@ -1,10 +1,11 @@
-package com.github.ennoxhd.tictactoe;
+package com.github.ennoxhd.tictactoe.io;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import com.github.ennoxhd.tictactoe.Game;
 import com.github.ennoxhd.tictactoe.model.Player;
 import com.github.ennoxhd.tictactoe.model.Turn;
 
@@ -60,7 +61,7 @@ public class Print {
 		}
 	}
 	
-	Turn getTurnFromInput(Player currentPlayer) {
+	public Turn getTurnFromInput(Player currentPlayer) {
 		toOutput().println();
 		Turn nextTurn = null;
 		while(nextTurn == null) {
@@ -84,7 +85,7 @@ public class Print {
 		return nextTurn;
 	}
 
-	void postGame(Player winner) {
+	public void postGame(Player winner) {
 		String wStr = "";
 		if(winner.isNamed()) {
 			wStr = winner.name();
@@ -99,7 +100,7 @@ public class Print {
 		toOutput().print(string);
 	}
 
-	void invalidTurn(Turn nextTurn) {
+	public void invalidTurn(Turn nextTurn) {
 		toOutput().println("The turn " + nextTurn.toString() + " is not valid!");
 	}
 }

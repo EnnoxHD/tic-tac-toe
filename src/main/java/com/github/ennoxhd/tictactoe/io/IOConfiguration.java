@@ -1,4 +1,4 @@
-package com.github.ennoxhd.tictactoe;
+package com.github.ennoxhd.tictactoe.io;
 
 import java.io.InputStream;
 import java.io.OutputStream;

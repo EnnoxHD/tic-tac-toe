@@ -1,5 +1,7 @@
 package com.github.ennoxhd.tictactoe;
 
+import com.github.ennoxhd.tictactoe.io.IOConfiguration;
+import com.github.ennoxhd.tictactoe.io.Print;
 import com.github.ennoxhd.tictactoe.model.Turn;
 
 public class Main {

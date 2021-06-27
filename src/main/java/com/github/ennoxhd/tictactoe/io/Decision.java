@@ -1,4 +1,4 @@
-package com.github.ennoxhd.tictactoe;
+package com.github.ennoxhd.tictactoe.io;
 
 import java.util.List;
 import java.util.stream.Collectors;
