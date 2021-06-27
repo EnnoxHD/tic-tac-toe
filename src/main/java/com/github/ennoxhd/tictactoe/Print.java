@@ -7,9 +7,6 @@ import java.util.Scanner;
 
 public class Print {
 	
-	private static final String YES = "yes";
-	private static final String NO = "no";
-	
 	private Scanner input;
 	private PrintStream output;
 	
@@ -44,6 +41,8 @@ public class Print {
 	}
 	
 	public Game preGame() {
+		final String YES = "yes";
+		final String NO = "no";
 		final String options = giveOptions(YES, NO);
 		getOutput().print("""
 				--- Welcome to TicTacToe ---
