@@ -43,9 +43,9 @@ public class Board {
 	}
 	
 	public boolean nextTurnValid(Turn turn) {
-		return (turn.getX() >= 0 && turn.getX() <= 2
+		return turn.getX() >= 0 && turn.getX() <= 2
 			&& turn.getY() >= 0 && turn.getY() <= 2
-			&& fields[turn.getY()][turn.getX()] == null) ? true : false;
+			&& fields[turn.getY()][turn.getX()] == null;
 	}
 	
 	public void nextTurn(Turn turn) {
