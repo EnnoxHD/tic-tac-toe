@@ -12,4 +12,9 @@ public record Player(
 	public boolean isNamed() {
 		return !"".equals(name());
 	}
+	
+	@Override
+	public String toString() {
+		return isNamed() ? name() : sign().toString();
+	}
 }

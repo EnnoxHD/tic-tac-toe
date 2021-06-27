@@ -86,13 +86,7 @@ public class Print {
 	}
 
 	public void postGame(Player winner) {
-		String wStr = "";
-		if(winner.isNamed()) {
-			wStr = winner.name();
-		} else {
-			wStr = winner.sign().toString();
-		}
-		toOutput().println("\nThe winner of the game is: " + wStr);
+		toOutput().println("\nThe winner of the game is: " + winner.toString());
 		toOutput().println("--- --- --- --- ---");
 	}
 	
