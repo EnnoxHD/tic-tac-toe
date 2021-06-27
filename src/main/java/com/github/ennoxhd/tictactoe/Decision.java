@@ -21,8 +21,10 @@ public enum Decision {
 	}
 	
 	public static String giveOptions() {
+		final String quote = "'";
 		return List.of(values()).stream()
 				.map(Decision::toString)
-				.collect(Collectors.joining(" or ", "'", "'"));
+				.map(e -> quote + e + quote)
+				.collect(Collectors.joining(" or "));
 	}
 }
