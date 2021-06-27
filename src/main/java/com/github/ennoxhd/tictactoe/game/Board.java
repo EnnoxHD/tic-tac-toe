@@ -1,4 +1,4 @@
-package com.github.ennoxhd.tictactoe;
+package com.github.ennoxhd.tictactoe.game;
 
 import com.github.ennoxhd.tictactoe.model.PlayerSign;
 import com.github.ennoxhd.tictactoe.model.Turn;
@@ -45,7 +45,7 @@ public class Board {
 		return column;
 	}
 	
-	boolean nextTurnValid(Turn turn) {
+	public boolean nextTurnValid(Turn turn) {
 		return fields[turn.y()][turn.x()] == null;
 	}
 	

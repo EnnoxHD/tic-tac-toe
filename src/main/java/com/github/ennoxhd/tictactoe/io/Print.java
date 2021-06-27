@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import com.github.ennoxhd.tictactoe.Game;
+import com.github.ennoxhd.tictactoe.game.Game;
 import com.github.ennoxhd.tictactoe.model.Player;
 import com.github.ennoxhd.tictactoe.model.Turn;
 
