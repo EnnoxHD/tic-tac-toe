@@ -3,6 +3,10 @@ package com.github.ennoxhd.tictactoe;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.github.ennoxhd.tictactoe.model.Player;
+import com.github.ennoxhd.tictactoe.model.PlayerSign;
+import com.github.ennoxhd.tictactoe.model.Turn;
+
 public class Game {
 
 	private Board board = null;
@@ -25,19 +29,19 @@ public class Game {
 		return board;
 	}
 	
-	public Player getPlayerBySign(PlayerSign sign) {
+	Player getPlayerBySign(PlayerSign sign) {
 		return players.get(sign);
 	}
 	
-	public PlayerSign getCurrentPlayerSign() {
+	PlayerSign getCurrentPlayerSign() {
 		return currentPlayer;
 	}
 	
-	public Player getCurrentPlayer() {
+	Player getCurrentPlayer() {
 		return getPlayerBySign(getCurrentPlayerSign());
 	}
 		
-	public void nextTurn(Turn turn) {
+	void nextTurn(Turn turn) {
 		if(turn.sign().equals(getCurrentPlayerSign()) && board.nextTurnValid(turn)) {
 			board.nextTurn(turn);
 			switchPlayers();
@@ -57,7 +61,7 @@ public class Game {
 		}
 	}
 	
-	public Player getWinner() {
+	Player getWinner() {
 		Player player = null;
 		if(board.hasWon()) {
 			PlayerSign[] hasWonRow = new PlayerSign[3], hasWonColumn = new PlayerSign[3], hasWonX = new PlayerSign[2];

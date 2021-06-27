@@ -1,5 +1,8 @@
 package com.github.ennoxhd.tictactoe;
 
+import com.github.ennoxhd.tictactoe.model.PlayerSign;
+import com.github.ennoxhd.tictactoe.model.Turn;
+
 public class Board {
 
 	// fields[row][column]
@@ -33,20 +36,20 @@ public class Board {
 		return true;
 	}
 	
-	public PlayerSign[] getRow(int rowNumber) {
+	PlayerSign[] getRow(int rowNumber) {
 		return fields[rowNumber];
 	}
 	
-	public PlayerSign[] getColumn(int columnNumber) {
+	PlayerSign[] getColumn(int columnNumber) {
 		PlayerSign[] column = {getRow(0)[columnNumber], getRow(1)[columnNumber], getRow(2)[columnNumber]};
 		return column;
 	}
 	
-	public boolean nextTurnValid(Turn turn) {
+	boolean nextTurnValid(Turn turn) {
 		return fields[turn.y()][turn.x()] == null;
 	}
 	
-	public void nextTurn(Turn turn) {
+	void nextTurn(Turn turn) {
 		if(nextTurnValid(turn)) {
 			fields[turn.y()][turn.x()] = turn.sign();
 		}

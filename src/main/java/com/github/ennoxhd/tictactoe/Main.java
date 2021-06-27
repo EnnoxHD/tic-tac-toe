@@ -1,5 +1,7 @@
 package com.github.ennoxhd.tictactoe;
 
+import com.github.ennoxhd.tictactoe.model.Turn;
+
 public class Main {
 
 	public static void main(String[] args) {
