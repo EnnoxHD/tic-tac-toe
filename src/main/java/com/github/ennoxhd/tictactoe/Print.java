@@ -31,42 +31,29 @@ public class Print {
 		setOutput(config.out());
 	}
 	
-	private String giveOptions(String... string) {
-		String options = "";
-		for(int i = 0; i < string.length; i++) {
-			options += "'" + string[i].toString() + "'";
-			if(i < string.length - 1) options += " or ";
-		}
-		return options;
-	}
-	
 	public Game preGame() {
-		final String YES = "yes";
-		final String NO = "no";
-		final String options = giveOptions(YES, NO);
+		final String options = Decision.giveOptions();
 		toOutput().print("""
 				--- Welcome to TicTacToe ---
 				Do you want to give the players some names (%s)?\s"""
 				.formatted(options));
-		String a = "";
-		int i = 0;
-		do {
-			if(i != 0) {
+		Decision answer = null;
+		while(answer == null) {
+			answer = Decision.fromString(fromInput().nextLine());
+			if(answer == null) {
 				toOutput().print("Wrong input, please write " + options + ": ");
 			}
-			a = fromInput().nextLine();
-			i++;
-		} while((!YES.equals(a)) && (!NO.equals(a)));
-		if(YES.equals(a)) {
-			toOutput().print("Enter the name for the first player: ");
-			String firstPlayerName = "";
-			firstPlayerName = fromInput().next();
-			toOutput().print("Enter the name for the second player: ");
-			String secondPlayerName = "";
-			secondPlayerName = fromInput().next();
-			return new Game(firstPlayerName, secondPlayerName);
-		} else {
-			return new Game();
+		}
+		switch(answer) {
+			case YES:
+				toOutput().print("Enter the name for the first player: ");
+				String firstPlayerName = fromInput().next();
+				toOutput().print("Enter the name for the second player: ");
+				String secondPlayerName = fromInput().next();
+				return new Game(firstPlayerName, secondPlayerName);
+			case NO:
+			default:
+				return new Game();
 		}
 	}
 	
