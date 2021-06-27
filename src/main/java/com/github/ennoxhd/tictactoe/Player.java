@@ -1,32 +1,15 @@
 package com.github.ennoxhd.tictactoe;
 
-public class Player {
-
-	private PlayerSign sign = null;
-	private String name = null;
+public record Player(
+		PlayerSign sign,
+		String name) {
 	
-	public Player(PlayerSign sign) {
-		this(sign, "");
+	public Player {
+		if(name == null)
+			name = "";
 	}
 	
-	public Player(PlayerSign sign, String name) {
-		this.sign = sign;
-		this.name = name;
-	}
-	
-	public Player(Player player) {
-		this(player.getSign(), player.getPlayerName());
-	}
-	
-	public PlayerSign getSign() {
-		return sign;
-	}
-	
-	public String getSignString() {
-		return sign.toString();
-	}
-	
-	public String getPlayerName() {
-		return name;
+	public boolean isNamed() {
+		return !"".equals(name());
 	}
 }

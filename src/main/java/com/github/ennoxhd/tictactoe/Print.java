@@ -61,18 +61,18 @@ public class Print {
 		toOutput().println();
 		Turn nextTurn = null;
 		while(nextTurn == null) {
-			if(!currentPlayer.getPlayerName().equals("")) {
-				toOutput().println("Move of " + currentPlayer.getPlayerName()
-					+ " (" + currentPlayer.getSignString() + "): ");
+			if(currentPlayer.isNamed()) {
+				toOutput().println("Move of " + currentPlayer.name()
+					+ " (" + currentPlayer.sign() + "): ");
 			} else {
-				toOutput().println("Move of " + currentPlayer.getSignString() + ": ");
+				toOutput().println("Move of " + currentPlayer.sign() + ": ");
 			}
 			toOutput().print("x - ");
 			final int x = fromInput().nextInt();
 			toOutput().print("y - ");
 			final int y = fromInput().nextInt();
 			try {
-				nextTurn = new Turn(currentPlayer.getSign(), x, y);
+				nextTurn = new Turn(currentPlayer.sign(), x, y);
 			} catch(IllegalArgumentException e) {
 				nextTurn = null;
 				toOutput().println("Please enter coordinates in valid range [0;2] for x and y direction!");
@@ -83,10 +83,10 @@ public class Print {
 
 	public void postGame(Player winner) {
 		String wStr = "";
-		if(!winner.getPlayerName().equals("")) {
-			wStr = winner.getPlayerName();
+		if(winner.isNamed()) {
+			wStr = winner.name();
 		} else {
-			wStr = winner.getSignString();
+			wStr = winner.sign().toString();
 		}
 		toOutput().println("\nThe winner of the game is: " + wStr);
 		toOutput().println("--- --- --- --- ---");
