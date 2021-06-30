@@ -40,8 +40,11 @@ public class Board {
 	}
 	
 	PlayerSign[] getColumn(int columnNumber) {
-		PlayerSign[] column = {getRow(0)[columnNumber], getRow(1)[columnNumber], getRow(2)[columnNumber]};
-		return column;
+		return new PlayerSign[] {
+			getRow(0)[columnNumber],
+			getRow(1)[columnNumber],
+			getRow(2)[columnNumber]
+		};
 	}
 	
 	public boolean nextTurnValid(Turn turn) {
