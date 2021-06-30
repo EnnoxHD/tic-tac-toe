@@ -12,6 +12,7 @@ public class Game {
 	private Board board = null;
 	private PlayerSign currentPlayer = null;
 	private Map<PlayerSign, Player> players = null;
+	private int turnCounter = 0;
 	
 	public Game() {
 		this("", "");
@@ -29,6 +30,14 @@ public class Game {
 		return board;
 	}
 	
+	private void increaseTurnCounter() {
+		turnCounter++;
+	}
+	
+	public boolean isOver() {
+		return turnCounter >= 9;
+	}
+	
 	Player getPlayerBySign(PlayerSign sign) {
 		if(sign == null)
 			return null;
@@ -44,9 +53,12 @@ public class Game {
 	}
 		
 	public void nextTurn(Turn turn) {
-		if(turn.sign().equals(getCurrentPlayerSign()) && board.nextTurnValid(turn)) {
-			board.nextTurn(turn);
-			switchPlayers();
+		if(turn.sign().equals(getCurrentPlayerSign())
+				&& getBoard().nextTurnValid(turn)) {
+			if(getBoard().nextTurn(turn)) {
+				increaseTurnCounter();
+				switchPlayers();
+			}
 		}
 	}
 	

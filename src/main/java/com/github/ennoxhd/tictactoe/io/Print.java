@@ -86,7 +86,11 @@ public class Print {
 	}
 
 	public void postGame(Player winner) {
-		toOutput().println("\n--- The winner of the game is: " + winner.toString() + " ---");
+		if(winner != null) {
+			toOutput().println("\n--- The winner of the game is: " + winner.toString() + " ---");
+		} else {
+			toOutput().println("\n--- There is no winner this time! ---");
+		}
 	}
 	
 	public void print(String string) {

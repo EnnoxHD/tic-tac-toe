@@ -51,10 +51,12 @@ public class Board {
 		return fields[turn.y()][turn.x()] == null;
 	}
 	
-	void nextTurn(Turn turn) {
+	boolean nextTurn(Turn turn) {
 		if(nextTurnValid(turn)) {
 			fields[turn.y()][turn.x()] = turn.sign();
+			return true;
 		}
+		return false;
 	}
 	
 	public PlayerSign getWinner() {

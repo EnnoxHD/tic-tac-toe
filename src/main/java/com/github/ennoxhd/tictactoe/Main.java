@@ -11,7 +11,7 @@ public class Main {
 		IOConfiguration ioConfig = new IOConfiguration(System.in, System.out);
 		Print print = new Print(ioConfig);
 		Game game = print.preGame();
-		while(!game.hasWon()) {
+		while(!game.hasWon() && !game.isOver()) {
 			Turn nextTurn = null;
 			print.print(game.getBoard().toString());
 			while(nextTurn == null) {
