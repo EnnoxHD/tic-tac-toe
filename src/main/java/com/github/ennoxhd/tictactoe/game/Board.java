@@ -57,58 +57,31 @@ public class Board {
 		}
 	}
 	
-	public PlayerSign getWinner() {		
-		PlayerSign[] hasWonRow = new PlayerSign[3], hasWonColumn = new PlayerSign[3], hasWonX = new PlayerSign[2];
-		for(int i = 0; i < 3; i++) {
-			//Rows
-			if(getRow(i)[0] == PlayerSign.X && getRow(i)[1] == PlayerSign.X && getRow(i)[2] == PlayerSign.X) {
-				hasWonRow[i] = PlayerSign.X;
-			}
-			if(getRow(i)[0] == PlayerSign.O && getRow(i)[1] == PlayerSign.O && getRow(i)[2] == PlayerSign.O) {
-				hasWonRow[i] = PlayerSign.O;
-			}
-			//Columns
-			if(getColumn(i)[0] == PlayerSign.X && getColumn(i)[1] == PlayerSign.X && getColumn(i)[2] == PlayerSign.X) {
-				hasWonColumn[i] = PlayerSign.X;
-			}
-			if(getColumn(i)[0] == PlayerSign.O && getColumn(i)[1] == PlayerSign.O && getColumn(i)[2] == PlayerSign.O) {
-				hasWonColumn[i] = PlayerSign.O;
-			}
-		}
-		//X fuer \
-		if(getRow(0)[0] == PlayerSign.X && getRow(1)[1] == PlayerSign.X && getRow(2)[2] == PlayerSign.X) {
-			hasWonX[0] = PlayerSign.X;
-		}
-		if(getRow(0)[0] == PlayerSign.O && getRow(1)[1] == PlayerSign.O && getRow(2)[2] == PlayerSign.O) {
-			hasWonX[0] = PlayerSign.O;
-		}
-		//X fuer /
-		if(getRow(0)[2] == PlayerSign.X && getRow(1)[1] == PlayerSign.X && getRow(2)[0] == PlayerSign.X) {
-			hasWonX[0] = PlayerSign.X;
-		}
-		if(getRow(0)[2] == PlayerSign.O && getRow(1)[1] == PlayerSign.O && getRow(2)[0] == PlayerSign.O) {
-			hasWonX[0] = PlayerSign.O;
-		}
-		
-		//Abfragen
-		PlayerSign sign = null;
-		for(int i = 0; i < 3; i++) {
-			if(hasWonRow[i] == PlayerSign.X || hasWonColumn[i] == PlayerSign.X) {
-				sign = PlayerSign.X;
-			}
-			if(hasWonRow[i] == PlayerSign.O || hasWonColumn[i] == PlayerSign.O) {
-				sign = PlayerSign.O;
-			}
-			if(i < 2) {
-				if(hasWonX[i] == PlayerSign.X) {
-					sign = PlayerSign.X;
+	public PlayerSign getWinner() {
+		for(PlayerSign sign : PlayerSign.values()) {
+			for(int i = 0; i < 3; i++) {
+				// Rows |
+				if(getRow(i)[0] == sign && getRow(i)[1] == sign && getRow(i)[2] == sign) {
+					return sign;
 				}
-				if(hasWonX[i] == PlayerSign.O) {
-					sign = PlayerSign.O;
+				// Columns ---
+				if(getColumn(i)[0] == sign && getColumn(i)[1] == sign && getColumn(i)[2] == sign) {
+					return sign;
+				}
+			}
+			// Diagonals X
+			if(getRow(1)[1] == sign) {
+				// Falling diagonal \
+				if(getRow(0)[0] == sign && getRow(2)[2] == sign) {
+					return sign;
+				}
+				// Rising diagonal /
+				if(getRow(0)[2] == sign && getRow(2)[0] == sign) {
+					return sign;
 				}
 			}
 		}
-		return sign;
+		return null;
 	}
 	
 	@Override
