@@ -86,8 +86,7 @@ public class Print {
 	}
 
 	public void postGame(Player winner) {
-		toOutput().println("\nThe winner of the game is: " + winner.toString());
-		toOutput().println("--- --- --- --- ---");
+		toOutput().println("\n--- The winner of the game is: " + winner.toString() + " ---");
 	}
 	
 	public void print(String string) {
